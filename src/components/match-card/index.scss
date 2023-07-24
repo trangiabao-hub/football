@@ -1,0 +1,64 @@
+.match-card{
+  aspect-ratio: 1/1;
+  h2,h3{
+    font-size: 18px;
+    text-align: center;
+  }
+  h3{
+    font-size: 14px;
+  }
+
+  &__team{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .result{
+      text-align: center;
+
+      .top{
+        color: red;
+        font-weight: 900;
+        margin: 0 20px;
+      }
+
+      .bottom{
+        color: green;
+        font-weight: 900;
+        margin: 0 20px;
+      }
+    }
+
+    .team{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      img{
+        width: 50px;
+      }
+
+      span{
+        font-weight: 900;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  &__score{
+    margin-top: 20px;
+    .score{
+      display: flex;
+      text-align: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 15px 10px;
+
+      span{
+        &:last-child, &:first-child{
+          font-weight: 900;
+        }
+      }
+    }
+  }
+}
