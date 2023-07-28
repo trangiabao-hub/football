@@ -28,7 +28,11 @@ const MailList = () => {
     },
     {
       title: 'Đăng kí',
-      render: (_, record) => {
+      render: (_: string, record: {
+        key: string;
+        email: string;
+        isActive: boolean
+      }) => {
         return <Switch checked={record.isActive} onChange={(value) => {
           setDataSource(dataSource.map(item => {
             if (item.key === record.key) {

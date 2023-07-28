@@ -1,17 +1,15 @@
 import { Segmented, Spin } from 'antd';
 import { SegmentedValue } from 'antd/es/segmented';
-import React, { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import './index.scss'
 import Setting from '../components/setting';
 import CardList from '../components/card-list';
 import api from '../config/axios.ts';
 import { AxiosError, AxiosResponse } from 'axios';
-import { convertDateString } from '../components/utils/date-time.ts';
 import { LoadingOutlined } from '@ant-design/icons';
 const MainScreen: FC = () => {
   const [currentPage, setCurrentPage] = useState<SegmentedValue>('Tất cả trận đấu');
   const [matches, setMatches] = useState([]);
-  const [date, setDate] = useState('');
   const antIcon = <LoadingOutlined style={{ fontSize: 70 }} spin />;
   useEffect(() => {
     api.get('/matches')
@@ -30,15 +28,15 @@ const MainScreen: FC = () => {
     if (matches.length > 0) {
       switch (currentPage) {
         case 'Tất cả trận đấu':
-          return <CardList match={matches} date={date} />
+          return <CardList match={matches}  />
         case 'Xếp hạng 5 phút':
-          return <CardList match={matches} date={date} />
+          return <CardList match={matches}  />
         case 'Xếp hạng 5 phút + 1':
-          return <CardList match={matches} date={date} />
+          return <CardList match={matches}  />
         case 'Xếp hạng 10 phút':
-          return <CardList match={matches} date={date} />
+          return <CardList match={matches}  />
         case 'Xếp hạng 10 phút + 2':
-          return <CardList match={matches} date={date} />
+          return <CardList match={matches}  />
         case 'Cài đặt':
           return <Setting />
       }

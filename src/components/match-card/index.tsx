@@ -1,12 +1,11 @@
 import { Card, Row } from "antd"
 import './index.scss'
 import { FC } from "react"
-import { convertToVietnamTime, getLocalDateTimeByFormat } from "../utils/date-time";
+import { convertToVietnamTime } from "../utils/date-time";
 interface MatchCardProps {
   match: Result;
-  date: string;
 }
-const MatchCard: FC<MatchCardProps> = ({ match, date }) => {
+const MatchCard: FC<MatchCardProps> = ({ match }) => {
   console.log(match.statistics);
 
   const getStatisticsByType = () => {
@@ -34,7 +33,7 @@ const MatchCard: FC<MatchCardProps> = ({ match, date }) => {
         <tr>
           <th style={{position: 'sticky', left: 0, backgroundColor: '#fff'}}></th>
           {value.map(item=>{
-            return <><td style={{textAlign: 'center'}}>Home</td><td style={{textAlign: 'center'}}>Away</td></>
+            return <><td style={{textAlign: 'center'}}>Home</td><td style={{textAlign: 'center'}}>Away</td> {console.log(item)}</>
           })}
         </tr>
       </thead>
@@ -61,7 +60,6 @@ const MatchCard: FC<MatchCardProps> = ({ match, date }) => {
       </Row>
 
       <h2>{match.competition.name}</h2>
-      <h3>{date}</h3>
       <h3>{match.id}</h3>
 
       <div className="match-card__team">

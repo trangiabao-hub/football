@@ -4,24 +4,25 @@ import UnderdogTeam from "./underdog";
 import Subscribe from "./subscribe";
 import MailList from "./mail-list";
 import './index.scss'
+import { Tab } from 'rc-tabs/lib/interface';
+
 const Setting = () => {
 
-
-  const items: any[] = [{
+  const items: Tab[] = [{
     label: `Hệ số cho chỉ số trận đấu`,
-    key: 1,
+    key: '1',
     children: <Coefficient />,
   }, {
     label: `Hệ số cho đội kèo dưới`,
-    key: 2,
+    key: '2',
     children: <UnderdogTeam />,
   }, {
     label: `Đăng kí xếp hạng`,
-    key: 3,
+    key: '3',
     children: <Subscribe />,
   }, {
     label: `Email đăng kí`,
-    key: 4,
+    key: '4',
     children: <MailList />,
   }]
 
