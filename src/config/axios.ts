@@ -1,7 +1,7 @@
 import axios, { Axios } from "axios";
 
-const apiBaseURL = "http://api.thesports.com";
-const axiosInstance: Axios = axios.create({
+const apiBaseURL = "http://206.189.148.148:6969/";
+const api: Axios = axios.create({
   baseURL: apiBaseURL,
   headers: {
     "Content-Type": "application/json",
@@ -18,4 +18,4 @@ const axiosInstance: Axios = axios.create({
   },
 });
 
-export default axiosInstance;
+export default api;

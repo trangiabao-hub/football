@@ -14,7 +14,7 @@ const MainScreen: FC = () => {
   const [date, setDate] = useState('');
   const antIcon = <LoadingOutlined style={{ fontSize: 70 }} spin />;
   useEffect(() => {
-    api.get('http://localhost:8080/matches')
+    api.get('/matches')
       .then((response: AxiosResponse) => {
         console.log(response.data);
 
@@ -32,13 +32,13 @@ const MainScreen: FC = () => {
         case 'Tất cả trận đấu':
           return <CardList match={matches} date={date} />
         case 'Xếp hạng 5 phút':
-          return <CardList />
+          return <CardList match={matches} date={date} />
         case 'Xếp hạng 5 phút + 1':
-          return <CardList />
+          return <CardList match={matches} date={date} />
         case 'Xếp hạng 10 phút':
-          return <CardList />
+          return <CardList match={matches} date={date} />
         case 'Xếp hạng 10 phút + 2':
-          return <CardList />
+          return <CardList match={matches} date={date} />
         case 'Cài đặt':
           return <Setting />
       }
