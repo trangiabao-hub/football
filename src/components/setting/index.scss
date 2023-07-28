@@ -1,0 +1,9 @@
+.setting{
+  min-width: 1000px;
+  overflow: auto;
+
+  .ant-tabs-nav{
+    position: sticky;
+    left: 0;
+  }
+}

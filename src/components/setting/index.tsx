@@ -3,7 +3,7 @@ import Coefficient from "./coefficient";
 import UnderdogTeam from "./underdog";
 import Subscribe from "./subscribe";
 import MailList from "./mail-list";
-
+import './index.scss'
 const Setting = () => {
 
 
@@ -26,7 +26,7 @@ const Setting = () => {
   }]
 
   return (
-    <div>
+    <div className="setting">
       <Tabs
         tabPosition='left'
         items={items}

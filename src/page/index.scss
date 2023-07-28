@@ -1,4 +1,8 @@
 .main{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
 
   .segment{
     width: 100%;
@@ -13,7 +17,7 @@
       }
 
       .ant-segmented-thumb{
-        background-color: #4096ff !important;
+        background-color: #1677ff !important;
       }
 
       .ant-segmented-item-selected{
@@ -23,6 +27,18 @@
   }
 
   :where(.css-dev-only-do-not-override-1jr9qlj).ant-segmented .ant-segmented-item-selected{
-    background-color: #4096ff !important;
+    background-color: #1677ff !important;
+  }
+
+  .page{
+    flex-grow: 1;
+    overflow: auto;
+    scroll-padding-top: 20px;
+
+    &.spin{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
