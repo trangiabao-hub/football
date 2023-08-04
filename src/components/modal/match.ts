@@ -1,5 +1,4 @@
-
-interface Result {
+export type Result = {
   id: string;
   date: string;
   season_id: string;
@@ -17,6 +16,9 @@ interface Result {
   home_position: string;
   away_position: string;
   competition: CompetitionData;
+  handicap: number;
+  scoreHome: number;
+  scoreAway: number;
   coverage: {
     animation: number;
     lineup: number;
@@ -49,9 +51,17 @@ interface Result {
       away: number;
     }[]
   }[]
+
+  statisticCal: StatisticCalc []
 }
 
-interface TeamData {
+interface StatisticCalc{
+  label: string,
+  home: number;
+  away: number;
+}
+
+export interface TeamData {
   id: string;
   name: string;
   logo: string;

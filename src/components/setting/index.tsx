@@ -1,7 +1,7 @@
 import { Tabs } from "antd";
 import Coefficient from "./coefficient";
 import UnderdogTeam from "./underdog";
-import Subscribe from "./subscribe";
+import X from "./x";
 import MailList from "./mail-list";
 import './index.scss'
 import { Tab } from 'rc-tabs/lib/interface';
@@ -17,9 +17,9 @@ const Setting = () => {
     key: '2',
     children: <UnderdogTeam />,
   }, {
-    label: `Đăng kí xếp hạng`,
+    label: `Hệ số X`,
     key: '3',
-    children: <Subscribe />,
+    children: <X />,
   }, {
     label: `Email đăng kí`,
     key: '4',

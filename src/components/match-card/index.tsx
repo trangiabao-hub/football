@@ -1,12 +1,14 @@
-import { Card, Row } from "antd"
+import { Card, Row, Switch } from "antd"
 import './index.scss'
-import { FC } from "react"
+import { FC, useState } from "react"
 import { convertToVietnamTime } from "../utils/date-time";
+import { Result } from "../modal/match";
 interface MatchCardProps {
   match: Result;
 }
 const MatchCard: FC<MatchCardProps> = ({ match }) => {
-  console.log(match.statistics);
+
+  const [showDetail, setShowDetail] = useState(false);
 
   const getStatisticsByType = () => {
     let value: {
@@ -33,7 +35,7 @@ const MatchCard: FC<MatchCardProps> = ({ match }) => {
         <tr>
           <th style={{position: 'sticky', left: 0, backgroundColor: '#fff'}}></th>
           {value.map(item=>{
-            return <><td style={{textAlign: 'center'}}>Home</td><td style={{textAlign: 'center'}}>Away</td> {console.log(item)}</>
+            return <><td style={{textAlign: 'center'}}>Home</td><td style={{textAlign: 'center'}}>Away</td></>
           })}
         </tr>
       </thead>
@@ -69,7 +71,7 @@ const MatchCard: FC<MatchCardProps> = ({ match }) => {
         </div>
 
         <div className="result">
-          <div><strong><span className="top">(-1)</span> 0 - 0 <span className="bottom">(-1)</span></strong></div>
+          <div><strong><span className="top">({match.handicap < 0 && match.handicap !== -1000 ? match.handicap * -1 : 0})</span> {match.scoreHome} - {match.scoreAway} <span className="bottom">({match.handicap < 0 && match.handicap !== -1000 ? match.handicap : 0})</span></strong></div>
         </div>
         <div className="team">
           <img src={match.awayTeam?.logo} alt="" />
@@ -79,32 +81,19 @@ const MatchCard: FC<MatchCardProps> = ({ match }) => {
 
       <div className="match-card__score">
 
-        {getStatisticsByType()}
+      {match?.statistics?.length > 0 && <center><Switch style={{marginBottom: 20}} onChange={(e)=>{
+        setShowDetail(e)
+      }} /></center>}
 
-        <div className="score">
-          <span>10</span>
-          <span>Chỉ số từ phút thứ 4 đến phút thứ 5</span>
-          <span>10</span>
+        {showDetail && getStatisticsByType()}
+
+        {match?.statisticCal?.map(item=>{
+          return <div className="score">
+          <span>{item.home}</span>
+          <span>{item.label}</span>
+          <span>{item.away}</span>
         </div>
-        <hr />
-        <div className="score">
-          <span>10</span>
-          <span>Chỉ số 5 phút đầu</span>
-          <span>10</span>
-        </div>
-        <hr />
-        <div className="score">
-          <span>10</span>
-          <span>Chỉ số từ phút thứ 8 đến phút thứ 10</span>
-          <span>10</span>
-        </div>
-        <hr />
-        <div className="score">
-          <span>10</span>
-          <span>Chỉ số 10 phút đầu</span>
-          <span>10</span>
-        </div>
-        <hr />
+        })}
       </div>
     </Card>
   )

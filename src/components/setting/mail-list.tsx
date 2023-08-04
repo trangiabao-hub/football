@@ -1,4 +1,4 @@
-import { Card, Switch, Table } from "antd"
+import { Card, Checkbox, Switch, Table } from "antd"
 import { useState } from "react";
 
 const MailList = () => {
@@ -27,6 +27,42 @@ const MailList = () => {
       key: 'email',
     },
     {
+      title: 'Xếp hạng 5 + 1',
+      dataIndex: 'fiveOne',
+      key: 'fiveOne',
+      align: 'center',
+      render: () => {
+        return <Checkbox style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} />;
+      }
+    },
+    {
+      title: 'Xếp hạng 5',
+      dataIndex: 'five',
+      key: 'five',
+      align: 'center',
+      render: () => {
+        return <Checkbox style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} />;
+      }
+    },
+    {
+      title: 'Xếp hạng 10 + 1',
+      dataIndex: 'tenOne',
+      key: 'tenOne',
+      align: 'center',
+      render: () => {
+        return <Checkbox style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} />;
+      }
+    },
+    {
+      title: 'Xếp hạng 10',
+      dataIndex: 'ten',
+      key: 'ten',
+      align: 'center',
+      render: () => {
+        return <Checkbox style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} />;
+      }
+    },
+    {
       title: 'Đăng kí',
       render: (_: string, record: {
         key: string;
@@ -43,7 +79,7 @@ const MailList = () => {
           }))
         }} />
       }
-    }
+    },
   ];
   return (
     <div>
