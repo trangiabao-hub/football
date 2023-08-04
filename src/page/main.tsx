@@ -88,11 +88,11 @@ const MainScreen: FC = () => {
     }
   }
 
-  const sendMail = (match: Result, type: string) =>{
-    api.post(`mail/${type}`, match).then((res)=>{
-      console.log(res);
-    })
-  }
+  // const sendMail = (match: Result, type: string) =>{
+  //   api.post(`mail/${type}`, match).then((res)=>{
+  //     console.log(res);
+  //   })
+  // }
 
   useEffect(() => {
     const fetch = async () => {
