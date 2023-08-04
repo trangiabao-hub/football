@@ -19,7 +19,7 @@ const UnderdogTeam = () => {
   },[])
 
   const submit = async () =>{
-    const response = await api.post('http://localhost:6969/underrafter', {
+    const response = await api.post('/underrafter', {
       underrafterValues: underdog
     })
     dispatch(setUnderdog(response.data))
