@@ -1,8 +1,9 @@
 import { Card, Row, Switch } from "antd"
 import './index.scss'
 import { FC, useState } from "react"
-import { convertToVietnamTime } from "../utils/date-time";
+import { convertToVietnamTime, getCurrentTimestamp } from "../utils/date-time";
 import { Result } from "../modal/match";
+import MatchStatus from "../modal/matchStatus";
 interface MatchCardProps {
   match: Result;
 }
@@ -55,6 +56,41 @@ const MatchCard: FC<MatchCardProps> = ({ match }) => {
     </div>
   }
 
+  const generateHandicap = (handicap: number, team: 'home' | 'away'): string => {
+
+    if(team === 'home'){
+      if(handicap > 0 && handicap !== -1000){
+        return '-'+ handicap
+      }else if(handicap < 0 && handicap !== -1000){
+        return '+'+ handicap * -1
+      }else{
+        return '0'
+      }
+    }else{
+      if(handicap > 0 && handicap !== -1000){
+        return '+'+ handicap
+      }else if(handicap < 0 && handicap !== -1000){
+        return '-'+ handicap * -1
+      }else{
+        return '0'
+      }
+    }
+  }
+
+  const generateTime = () =>{
+    // (Number(((getCurrentTimestamp() - match.match_time) / 60).toFixed(0)) < 90) ? ((getCurrentTimestamp() - match.match_time) / 60).toFixed(0)+ 'p' : 'END'
+    const time = Number(((getCurrentTimestamp() - match.match_time) / 60).toFixed(0))
+    if(time < 0){
+      return MatchStatus[match.matchState]
+    }
+
+    if(time > 90){
+      return MatchStatus[match.matchState]
+    }
+
+    return time + 'p'
+  }
+
   return (
     <Card className="match-card" bordered>
       <Row style={{ justifyContent: 'space-between', marginBottom: 20 }}>
@@ -64,6 +100,7 @@ const MatchCard: FC<MatchCardProps> = ({ match }) => {
 
       <h2>{match.competition.name}</h2>
       <h3>{match.id}</h3>
+      <h3><strong>{generateTime()}</strong></h3>
 
       <div className="match-card__team">
         <div className="team">
@@ -72,7 +109,11 @@ const MatchCard: FC<MatchCardProps> = ({ match }) => {
         </div>
 
         <div className="result">
-          <div><strong><span className="top">({match.handicap < 0 && match.handicap !== -1000 ? match.handicap * -1 : 0})</span> {match.scoreHome} - {match.scoreAway} <span className="bottom">({match.handicap < 0 && match.handicap !== -1000 ? match.handicap : 0})</span></strong></div>
+          <div><strong>
+            <span className="top">{generateHandicap(match.handicap, 'home')}</span>
+            {match.scoreHome} - {match.scoreAway}
+            <span className="bottom">{generateHandicap(match.handicap, 'away')}</span>
+          </strong></div>
         </div>
         <div className="team">
           <img src={match.awayTeam?.logo} alt="" />

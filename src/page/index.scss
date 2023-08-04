@@ -6,7 +6,6 @@
 
   .segment{
     width: 100%;
-
     .ant-segmented-group{
       width: 100%;
 
@@ -15,18 +14,23 @@
         // font-size: clamp(10px, 15px ,20px);
         padding: 10px 0;
       }
+    }
 
-      .ant-segmented-thumb{
-        background-color: #1677ff !important;
-      }
+  }
 
-      .ant-segmented-item-selected{
-        color: #fff;
-      }
+  .ant-segmented-group{
+
+
+    .ant-segmented-thumb{
+      background-color: #1677ff !important;
+    }
+
+    .ant-segmented-item-selected{
+      color: #fff;
     }
   }
 
-  :where(.css-dev-only-do-not-override-1jr9qlj).ant-segmented .ant-segmented-item-selected{
+  .ant-segmented .ant-segmented-item-selected{
     background-color: #1677ff !important;
   }
 

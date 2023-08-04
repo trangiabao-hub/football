@@ -38,7 +38,7 @@ const UnderdogTeam = () => {
             console.log(item);
 
                 return <Descriptions.Item label={`Hệ số kèo dưới (${item.handicap})`}>
-                <InputNumber size="large" min={1} max={100000} defaultValue={item.value} onChange={e=>{
+                <InputNumber size="large" max={100000} defaultValue={item.value} onChange={e=>{
                   underdog[index].value = e!
                   setUnderdogL([...underdog])
                 }}/>

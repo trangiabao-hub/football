@@ -19,6 +19,7 @@ export type Result = {
   handicap: number;
   scoreHome: number;
   scoreAway: number;
+  matchState: number;
   coverage: {
     animation: number;
     lineup: number;

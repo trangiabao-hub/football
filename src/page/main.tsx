@@ -52,7 +52,13 @@ const MainScreen: FC = () => {
     if (match.statisticCal[0][bottom] > match.statisticCal[0][top]) {
       return true;
     } else if (match.handicap === 0 || match.handicap === 0.25 || match.handicap === -0.25) {
-      if (Number((match.statisticCal[index][bottom] / match.statisticCal[index][top]).toFixed(2)) > x || Number((match.statisticCal[index][top] / match.statisticCal[index][bottom]).toFixed(2)) > x) {
+
+      const bot = match.statisticCal[index][bottom] > 0 ? match.statisticCal[index][bottom] : 0.00001
+      const tob = match.statisticCal[index][top] > 0 ? match.statisticCal[index][top] : 0.00001
+      if(match.id === '8yomo4h3ez9jq0j') console.log(tob / bot);
+      if (Number((bot / tob).toFixed(2)) > x || Number((tob / bot).toFixed(2)) > x) {
+
+
         return true;
       }
     }
@@ -394,11 +400,16 @@ const MainScreen: FC = () => {
           // }]
           response.data.forEach((item) => {
             try {
-              if (item.statistics && item.statistics.length === 4) {
-                item.statisticCal = []
+              if (item.statistics) {
                 for (let i = 0; i < 4; i++) {
-                  if (item.statistics && item.statistics[i].statistics)
+                  if(!item.statistics || !item.statistics[i]) break;
+                  if (item.statistics && item.statistics[i] && item.statistics[i].statistics)
                     item.statistics[i].statistics = item.statistics[i]?.statistics.sort((a, b) => a.type.localeCompare(b.type))
+
+
+                    if(!item.statisticCal){
+                      item.statisticCal = []
+                    }
 
                   item.statisticCal[i] = {
                     label: generateLabel(item.statistics[i]?.type),
@@ -411,42 +422,38 @@ const MainScreen: FC = () => {
                   console.log(top);
 
                   const value = getValueUnderDogByHandicap(item.handicap)
-                  if(item.id === 'vjxm8gh5ndxvr6o') console.log(value);
 
                   for (let j = 0; j < 9; j++) {
                     if (i === 1 || i === 3) {
-                      item.statisticCal[i].home += Number((((item.statistics[i]?.statistics[j]?.home - (item.statistics[i - 1]?.statistics[j]?.home)) * statistics[j].value).toFixed(1))) * (bottom == 'home' ? value : 1)
-                      item.statisticCal[i].away += Number((((item.statistics[i]?.statistics[j]?.away - (item.statistics[i - 1]?.statistics[j]?.away)) * statistics[j].value).toFixed(1))) * (bottom == 'away' ? value : 1)
+                      item.statisticCal[i].home += Number((((item.statistics[i]?.statistics[j]?.home - (item.statistics[i - 1]?.statistics[j]?.home)) * statistics[j]?.value).toFixed(1))) * (bottom == 'home' ? value : 1)
+                      item.statisticCal[i].away += Number((((item.statistics[i]?.statistics[j]?.away - (item.statistics[i - 1]?.statistics[j]?.away)) * statistics[j]?.value).toFixed(1))) * (bottom == 'away' ? value : 1)
                     } else {
-                      item.statisticCal[i].home += Number((item.statistics[i]?.statistics[j]?.home * statistics[j].value).toFixed(1)) * (bottom == 'home' ? value : 1)
-                      item.statisticCal[i].away += Number((item.statistics[i]?.statistics[j]?.away * statistics[j].value).toFixed(1)) * (bottom == 'away' ? value : 1)
+                      item.statisticCal[i].home += Number((item.statistics[i]?.statistics[j]?.home * statistics[j]?.value).toFixed(1)) * (bottom == 'home' ? value : 1)
+                      item.statisticCal[i].away += Number((item.statistics[i]?.statistics[j]?.away * statistics[j]?.value).toFixed(1)) * (bottom == 'away' ? value : 1)
                     }
                   }
-                }
 
+                  if(i === 0 && checkCondition1(item, 0)){
+                    // sendMail(item, "5_Minutes",);
+                    newTab1.push(item)
+                    setTab1([...newTab1])
+                  }
 
-                if (checkCondition1(item, 0)) {
-                  sendMail(item, "5_Minutes",);
-                  newTab1.push(item)
-                  setTab1([...newTab1])
-                }
-                if (checkCondition2(item, 0)) {
-                  sendMail(item, "5-4_Minutes",);
-                  newTab2.push(item)
-                  setTab2([...newTab2])
-                }
-
-                if (checkCondition1(item, 2)) {
-                  sendMail(item, "10_Minutes",);
-                  newTab3.push(item)
-                  setTab3([...newTab3])
-                }
-
-
-                if (checkCondition2(item, 2)) {
-                  sendMail(item, "10-8_Minutes",);
-                  newTab4.push(item)
-                  setTab4([...newTab4])
+                  if(i === 1 && checkCondition2(item, 0)){
+                    // sendMail(item, "5-4_Minutes",);
+                    newTab2.push(item)
+                    setTab2([...newTab2])
+                  }
+                  if(i === 2 && checkCondition1(item, 2)){
+                    // sendMail(item, "10_Minutes",);
+                    newTab3.push(item)
+                    setTab3([...newTab3])
+                  }
+                  if(i === 3 && checkCondition2(item, 2)){
+                    // sendMail(item, "10-8_Minutes",);
+                    newTab4.push(item)
+                    setTab4([...newTab4])
+                  }
                 }
               }
 
@@ -474,15 +481,15 @@ const MainScreen: FC = () => {
     if (matches.length > 0) {
       switch (currentPage) {
         case 0:
-          return <CardList match={matches} />
+          return <CardList match={matches} isShowButton={false}/>
         case 1:
-          return <CardList match={tab1} />
+          return <CardList match={tab1} isShowButton/>
         case 2:
-          return <CardList match={tab2} />
+          return <CardList match={tab2} isShowButton/>
         case 3:
-          return <CardList match={tab3} />
+          return <CardList match={tab3} isShowButton/>
         case 4:
-          return <CardList match={tab4} />
+          return <CardList match={tab4} isShowButton/>
         case 5:
           return <Setting />
       }

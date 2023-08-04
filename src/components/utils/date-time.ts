@@ -60,4 +60,8 @@ function convertToVietnamTime(timestamp: number, format: string): string {
   return vietnamMoment.format(format);
 }
 
-export {convertDateString,getLocalDateTimeByFormat, convertToVietnamTime}
+function getCurrentTimestamp() {
+  return Math.floor(Date.now() / 1000); // Convert milliseconds to seconds
+}
+
+export {convertDateString,getLocalDateTimeByFormat, convertToVietnamTime, getCurrentTimestamp}
