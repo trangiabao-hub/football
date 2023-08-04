@@ -1,7 +1,7 @@
 import axios, { Axios } from "axios";
 
-// const apiBaseURL = "http://206.189.148.148:6969/";
-const apiBaseURL = "http://localhost:6969/";
+const apiBaseURL = "http://222.255.117.224:6969/";
+// const apiBaseURL = "http://localhost:6969/";
 const api: Axios = axios.create({
   baseURL: apiBaseURL,
   headers: {
