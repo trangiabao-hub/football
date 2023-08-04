@@ -1,9 +1,8 @@
-import { Button, Card, Checkbox, Col, Descriptions, InputNumber, Row, notification } from "antd"
+import { Button, Card, Col, Descriptions, InputNumber, Row, notification } from "antd"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import api from "../../config/axios";
-import { AxiosResponse } from "axios";
 import { setX } from "../../redux/features/x";
 
 const X = () => {

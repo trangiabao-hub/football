@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import api from "../../config/axios";
 import { useDispatch } from "react-redux";
 import { setUnderdog } from "../../redux/features/underdog";
+import { Underdog } from "../modal/underdog";
 
 const UnderdogTeam = () => {
-  const [underdog, setUnderdogL] = useState<any>([]);
+  const [underdog, setUnderdogL] = useState<Underdog[]>([]);
   const dispatch = useDispatch();
   const [noti, context] = notification.useNotification();
   const fetch = async () =>{
@@ -33,7 +34,7 @@ const UnderdogTeam = () => {
         {context}
         <Row>
           <Col span={24}><Descriptions bordered column={4}>
-          {underdog.map((item, index)=>{
+          {underdog.map((item, index: number)=>{
             console.log(item);
 
                 return <Descriptions.Item label={`Hệ số kèo dưới (${item.handicap})`}>

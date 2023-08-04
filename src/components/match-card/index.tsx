@@ -35,6 +35,7 @@ const MatchCard: FC<MatchCardProps> = ({ match }) => {
         <tr>
           <th style={{position: 'sticky', left: 0, backgroundColor: '#fff'}}></th>
           {value.map(item=>{
+            console.log(item);
             return <><td style={{textAlign: 'center'}}>Home</td><td style={{textAlign: 'center'}}>Away</td></>
           })}
         </tr>

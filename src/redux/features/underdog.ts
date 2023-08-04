@@ -8,6 +8,8 @@ export const underDogSlice = createSlice({
   initialState,
   reducers: {
     setUnderdog: (state, action: PayloadAction<Underdog[]>) => {
+      console.log(state);
+
       return action.payload
     }
   },

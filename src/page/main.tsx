@@ -32,8 +32,8 @@ const MainScreen: FC = () => {
   }
 
   const generateBottomTop = (match: Result) => {
-    let bottom: 'home' | 'away';
-    let top: 'home' | 'away';
+    let bottom: 'home' | 'away' = 'home';
+    let top: 'home' | 'away' = 'home';
     if (match.handicap < 0) {
       bottom = 'home';
       top = 'away';
@@ -392,7 +392,7 @@ const MainScreen: FC = () => {
           //     }
           // ]
           // }]
-          response.data.forEach((item, index) => {
+          response.data.forEach((item) => {
             try {
               if (item.statistics && item.statistics.length === 4) {
                 item.statisticCal = []
@@ -408,6 +408,8 @@ const MainScreen: FC = () => {
 
 
                   const [top, bottom] = generateBottomTop(item)
+                  console.log(top);
+
                   const value = getValueUnderDogByHandicap(item.handicap)
                   if(item.id === 'vjxm8gh5ndxvr6o') console.log(value);
 

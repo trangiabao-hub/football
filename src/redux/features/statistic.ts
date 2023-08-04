@@ -8,6 +8,8 @@ export const statisticSlice = createSlice({
   initialState,
   reducers: {
     setStatistic: (state, action: PayloadAction<Statistic[]>) => {
+      console.log(state);
+
       return action.payload
     }
   },

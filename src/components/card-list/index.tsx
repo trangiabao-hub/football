@@ -9,11 +9,11 @@ interface CardListProps {
 
 const CardList: FC<CardListProps> = ({ match }) => {
 
-  const [type, setType] = useState('Tất cả');
+  const [type, setType] = useState<string>('Tất cả');
 
   const generateBottomTop = (match: Result) => {
-    let bottom: 'Home' | 'Away';
-    let top: 'Home' | 'Away';
+    let bottom: 'Home' | 'Away' = 'Home';
+    let top: 'Home' | 'Away' = 'Home';
     if (match.handicap < 0) {
       bottom = 'Home';
       top = 'Away';
@@ -33,7 +33,7 @@ const CardList: FC<CardListProps> = ({ match }) => {
 
   return <>
     <Segmented options={['Tất cả', 'Thắng', 'Thua']} onChange={(type)=>{
-      setType(type);
+      setType(type+'');
     }}/>
     <Row gutter={[16, 16]} style={{ padding: 20 }}>
 

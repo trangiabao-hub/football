@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { Statistic } from '../../model/statistic'
 
 const initialState: number = 0;
 
@@ -8,6 +7,8 @@ export const xSlice = createSlice({
   initialState,
   reducers: {
     setX: (state, action: PayloadAction<number>) => {
+      console.log(state);
+
       return action.payload
     }
   },
