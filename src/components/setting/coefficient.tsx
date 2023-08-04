@@ -11,12 +11,12 @@ const Coefficient = () => {
   const dispatch = useDispatch();
 
   const fetch = async () =>{
-    const response = await api.get('http://localhost:6969/statistic')
+    const response = await api.get('/statistic')
     setStatistics(response.data);
   }
 
   const submit = async () =>{
-    const response:AxiosResponse<Statistic[]> = await api.post('http://localhost:6969/statistic', {
+    const response:AxiosResponse<Statistic[]> = await api.post('/statistic', {
       statistics
     })
     dispatch(setStatistic(response.data))
