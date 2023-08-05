@@ -412,7 +412,7 @@ const MainScreen: FC = () => {
 
 
                 const [top, bottom] = generateBottomTop(item)
-                // console.log(top);
+                console.log(top);
 
                 const value = getValueUnderDogByHandicap(item.handicap)
 
