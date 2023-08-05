@@ -38,7 +38,7 @@ const Coefficient = () => {
             <Descriptions bordered column={1}>
               {statistics.map((item, index)=>{
                 return <Descriptions.Item label={item.type}>
-                <InputNumber size="large" min={0} max={100000} defaultValue={item.value} onChange={e=>{
+                <InputNumber size="large" max={100000} defaultValue={item.value} onChange={e=>{
                   statistics[index].value = e!
                   setStatistics([...statistics])
                 }}/>

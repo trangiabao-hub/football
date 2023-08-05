@@ -78,17 +78,18 @@ const MatchCard: FC<MatchCardProps> = ({ match }) => {
   }
 
   const generateTime = () =>{
-    // (Number(((getCurrentTimestamp() - match.match_time) / 60).toFixed(0)) < 90) ? ((getCurrentTimestamp() - match.match_time) / 60).toFixed(0)+ 'p' : 'END'
-    const time = Number(((getCurrentTimestamp() - match.match_time) / 60).toFixed(0))
-    if(time < 0){
-      return MatchStatus[match.matchState]
+
+    if(match.matchState === 2){
+      const time = Number(((getCurrentTimestamp() - match.actualStartTime) / 60).toFixed(0))
+      return time + 'p - '+MatchStatus[match.matchState]
     }
 
-    if(time > 90){
-      return MatchStatus[match.matchState]
+    if(match.matchState === 4){
+      const time = Number(((getCurrentTimestamp() - match.actualStartTime) / 60 + 45 + 1).toFixed(0))
+      return time + 'p - '+MatchStatus[match.matchState]
     }
 
-    return time + 'p'
+    return MatchStatus[match.matchState]
   }
 
   return (
@@ -96,6 +97,7 @@ const MatchCard: FC<MatchCardProps> = ({ match }) => {
       <Row style={{ justifyContent: 'space-between', marginBottom: 20 }}>
         <span>Time: <strong>{convertToVietnamTime(match.match_time, 'DD/MM HH:mm')}</strong></span>
         <span>Updated at: <strong>{convertToVietnamTime(match.updated_at, 'DD/MM HH:mm')}</strong></span>
+        <span>Match start at: <strong>{convertToVietnamTime(match.actualStartTime, 'DD/MM HH:mm')}</strong></span>
       </Row>
 
       <h2>{match.competition.name}</h2>
@@ -111,7 +113,7 @@ const MatchCard: FC<MatchCardProps> = ({ match }) => {
         <div className="result">
           <div><strong>
             <span className="top">{generateHandicap(match.handicap, 'home')}</span>
-            {match.scoreHome} - {match.scoreAway}
+            <h1>{match.scoreHome} - {match.scoreAway}</h1>
             <span className="bottom">{generateHandicap(match.handicap, 'away')}</span>
           </strong></div>
         </div>

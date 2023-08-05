@@ -20,6 +20,7 @@ export type Result = {
   scoreHome: number;
   scoreAway: number;
   matchState: number;
+  actualStartTime: number;
   coverage: {
     animation: number;
     lineup: number;

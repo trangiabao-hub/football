@@ -17,6 +17,13 @@
 
     .result{
       text-align: center;
+      flex-grow: 1;
+
+      strong{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
       .top{
         color: red;

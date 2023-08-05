@@ -7,8 +7,6 @@ export const xSlice = createSlice({
   initialState,
   reducers: {
     setX: (state, action: PayloadAction<number>) => {
-      console.log(state);
-
       return action.payload
     }
   },
