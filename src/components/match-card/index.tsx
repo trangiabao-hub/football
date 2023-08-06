@@ -1,6 +1,6 @@
 import { Card, Row, Switch } from "antd"
 import './index.scss'
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { convertToVietnamTime, getCurrentTimestamp } from "../utils/date-time";
 import { Result } from "../modal/match";
 import MatchStatus from "../modal/matchStatus";
@@ -10,6 +10,13 @@ interface MatchCardProps {
 const MatchCard: FC<MatchCardProps> = ({ match }) => {
 
   const [showDetail, setShowDetail] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+
+  useEffect(()=>{
+    setInterval(()=>{
+      setCurrentTime(getCurrentTimestamp())
+    },1000)
+  },[])
 
   const getStatisticsByType = () => {
     let value: {
@@ -80,12 +87,12 @@ const MatchCard: FC<MatchCardProps> = ({ match }) => {
   const generateTime = () =>{
 
     if(match.matchState === 2){
-      const time = Number(((getCurrentTimestamp() - match.actualStartTime) / 60).toFixed(0))
+      const time = Number(((currentTime - match.actualStartTime) / 60).toFixed(0))
       return time + 'p - '+MatchStatus[match.matchState]
     }
 
     if(match.matchState === 4){
-      const time = Number(((getCurrentTimestamp() - match.actualStartTime) / 60 + 45 + 1).toFixed(0))
+      const time = Number(((currentTime - match.actualStartTime) / 60 + 45 + 1).toFixed(0))
       return time + 'p - '+MatchStatus[match.matchState]
     }
 

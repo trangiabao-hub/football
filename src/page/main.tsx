@@ -426,9 +426,10 @@ const MainScreen: FC = () => {
                       item.statisticCal[2].home += Number((item.statistics[3]?.statistics[j]?.home * statistics[j]?.value).toFixed(1)) * (bottom == 'home' ? value : 1)
                       item.statisticCal[2].away += Number((item.statistics[3]?.statistics[j]?.away * statistics[j]?.value).toFixed(1)) * (bottom == 'away' ? value : 1)
                     }
-                  }else{
-                    item.statisticCal[i].home += Number((item.statistics[i]?.statistics[j]?.home * statistics[j]?.value).toFixed(1)) * (bottom == 'home' ? value : 1)
-                    item.statisticCal[i].away += Number((item.statistics[i]?.statistics[j]?.away * statistics[j]?.value).toFixed(1)) * (bottom == 'away' ? value : 1)
+                  }else if(i === 0 ){
+                    item.statistics[1].statistics = item?.statistics[1]?.statistics.sort((a, b) => a.type.localeCompare(b.type))
+                    item.statisticCal[0].home += Number((item.statistics[1]?.statistics[j]?.home * statistics[j]?.value).toFixed(1)) * (bottom == 'home' ? value : 1)
+                    item.statisticCal[0].away += Number((item.statistics[1]?.statistics[j]?.away * statistics[j]?.value).toFixed(1)) * (bottom == 'away' ? value : 1)
                   }
                 }
 
@@ -473,7 +474,12 @@ const MainScreen: FC = () => {
 
   useEffect(() => {
     statistics && x && underdog && fetch();
+    setInterval(()=>{
+      statistics && x && underdog && fetch();
+    }, 20000)
   }, [statistics, underdog, x])
+
+
 
 
 

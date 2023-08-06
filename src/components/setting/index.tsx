@@ -5,6 +5,7 @@ import X from "./x";
 import MailList from "./mail-list";
 import './index.scss'
 import { Tab } from 'rc-tabs/lib/interface';
+import DeleteData from "./delete";
 
 const Setting = () => {
 
@@ -24,6 +25,10 @@ const Setting = () => {
     label: `Email đăng kí`,
     key: '4',
     children: <MailList />,
+  }, {
+    label: `Xóa dữ liệu`,
+    key: '5',
+    children: <DeleteData />,
   }]
 
   return (
