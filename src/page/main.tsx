@@ -422,9 +422,9 @@ const MainScreen: FC = () => {
                     item.statisticCal[i].away += Number((((item.statistics[i]?.statistics[j]?.away - (item.statistics[i - 1]?.statistics[j]?.away)) * statistics[j]?.value).toFixed(1))) * (bottom == 'away' ? value : 1)
                   } else if(i === 2) {
                     if(item.statistics[3]){
-                      item.statistics[3].statistics = item?.statistics[i]?.statistics.sort((a, b) => a.type.localeCompare(b.type))
-                      item.statisticCal[i].home += Number((item.statistics[3]?.statistics[j]?.home * statistics[j]?.value).toFixed(1)) * (bottom == 'home' ? value : 1)
-                      item.statisticCal[i].away += Number((item.statistics[3]?.statistics[j]?.away * statistics[j]?.value).toFixed(1)) * (bottom == 'away' ? value : 1)
+                      item.statistics[3].statistics = item?.statistics[3]?.statistics.sort((a, b) => a.type.localeCompare(b.type))
+                      item.statisticCal[2].home += Number((item.statistics[3]?.statistics[j]?.home * statistics[j]?.value).toFixed(1)) * (bottom == 'home' ? value : 1)
+                      item.statisticCal[2].away += Number((item.statistics[3]?.statistics[j]?.away * statistics[j]?.value).toFixed(1)) * (bottom == 'away' ? value : 1)
                     }
                   }else{
                     item.statisticCal[i].home += Number((item.statistics[i]?.statistics[j]?.home * statistics[j]?.value).toFixed(1)) * (bottom == 'home' ? value : 1)
