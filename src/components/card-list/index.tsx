@@ -38,7 +38,7 @@ const CardList: FC<CardListProps> = ({ match, isShowButton }) => {
     }else{
       // return true
       if(subType.includes('Sắp diễn ra')) return item.match_time > getCurrentTimestamp();
-      if(subType.includes('Đang phân tích')) return item.matchState === 2 && item.statisticCal?.length < 3;
+      if(subType.includes('Đang phân tích')) return item.matchState === 2 && (getCurrentTimestamp() - item.actualStartTime) / 60 < 10;
       if(subType.includes('Đã phân tích')) return item.statisticCal?.length === 4;
     }
   }
